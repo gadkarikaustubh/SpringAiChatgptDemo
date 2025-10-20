@@ -1,6 +1,8 @@
 package com.example.SpringAIChatgptDemo;
 
 import org.springframework.ai.chat.model.ChatModel;
+import org.springframework.ai.chat.model.ChatResponse;
+import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,4 +19,10 @@ public class ChatService {
 	public String getResponse(String prompt) {
 		return chatModel.call(prompt);
 	}
+	
+	public String getResponseFromOptions (String prompt) {
+	ChatResponse chatResponse = chatModel.call(new Prompt("Summarize Spring Boot"));
+	return	chatResponse.getResult().getOutput().getText();
+	}
+	
 }
